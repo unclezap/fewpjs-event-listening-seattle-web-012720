@@ -1,67 +1,58 @@
-# Interacting with the DOM via JavaScript Event Listeners
+# TaskLister Lite™️
 
-## Learning Goals
+Today you'll be creating a simple to do list application that will focus on DOM
+manipulation. Take a look at `index.html` and identify the DOM elements you'll
+need to manipulate before you write any code.
 
-- Demonstrate triggering event listeners on DOM nodes with `addEventListener()`
+Check out the [working demo][example]!
 
-## Introduction
+## Learning Goals:
 
-We know how to manipulate nodes in the DOM by using JavaScript. We also know
-that events can be _handled_ and can do work inside _callback functions_ when the
-event is triggered. JavaScript programmers often say we are "listening" for
-an event in order to "execute" or "call" a _callback function_.
+* Squelch a default action with `Event.preventDefault`
 
-In order to teach nodes (or, "elements") to "listen" for an event, we use `addEventListener()`.
-It allows us to associate "hearing" an event with executing a callback.
+## Instructions:
 
-## Demonstrate Defining Event Listeners on DOM Nodes with `addEventListener()`
+Instead of relying on unit tests, this lab is deliverable driven. You will be
+responsible for asserting your solution works as intended by testing the
+behavior visually in the browser.
 
-`addEventListener()` takes two arguments:
+1. Fork and clone this repository
+2. Open `index.html` in Chrome (Tip: you can use `open index.html` in bash and, as long as Chrome is your default application for opening `.html` files, it will automatically open the file)
+3. Put your JavaScript knowledge to the test and work your way through the deliverables
 
-1. the name of the event
-2. a _callback function_ to "handle" the event
+## Structuring Your Code:
 
-Take a look at `index.html` in the browser. When you click in the `<input>`
-area, nothing happens. Now let's set up some _event handling_.
+You've been provided with a basic HTML file, as well as a `src/index.js` file
+where you can implement your solution. Focus on getting the feature working
+while using your knowledge to write readable, maintainable code. 
 
-Start by adding an event listener for the `click` event on the `input#input`
-element in `index.html`.
+## Deliverables:
 
-Try out the following in the Chrome DevTools console:
+- As a user, I should be able to type a task into the input field.
+- As a user, I should be able to click some form of a submit button.
+- As a user, the task string that I provided should appear on the DOM after the submit button has been activated.
 
-```js
-const input = document.getElementById('input');
-input.addEventListener('click', function(event) {
-  alert('I was clicked!');
-});
-```
+**Note:** [While the example][example] shows one working application of TaskLister Lite™️, yours can (and is encouraged to!) look however you like.
 
-When you click inside of `input#input`, **_now_**, you will get an alert box.
+## Squelch a Default Action with `Event.preventDefault`
 
-Take this code and paste it into the `index.js` file's `addingEventListener`
-function.
+The deliverables require you to handle an event in a form based on clicking a submit button. You're going to need to listen for a `submit` event on the `<form>` element. 
 
-Let's review the parts of this code:
+By default, Form elements automatically submit the form, which redirects the browser to a new url. This _is not_ the experience we want to build in this lab. We want to _prevent_ that event from performing its _default_ behavior (submitting the form), because ***we*** want to update the DOM using JavaScript. In order to _prevent_ the _default_ behavior of the
+`submit` event, when our handler "sees" the event, it needs to invoke the `preventDefault()` method on it.
 
-1. The node that will be doing the listening. We store that node in the `input` constant
-2. The invocation of `addEventListener` on the node that will be doing the listening
-  1. The first argument is the event name to listen for
-  2. The second argument is the _callback function_. It's work that will be executed
-     when the node "hears" the event
+Take a look at the [MDN Documentation on `Event.preventDefault`][mdn-pd]. You'll see how JavaScript is used to prevent a form element (checkbox) from doing it's _default_ behavior (appearing checked upon click). You'll want to prevent `submit` from doing it's default behavior in a similar fashion.
 
-## Conclusion
+## Stretch Deliverables:
 
-When you have pasted the solution into the `addingEventListener` function, your
-tests should pass when you run `learn`. This means you can run `learn submit`
-and move to the next lesson!
+If you finish early, try to implement one or more of the following:
 
-## Resources
+- A delete function that will remove tasks from your list
+- A priority value selected from a dropdown that is used to determine the color of the text in the list (e.g. red for high priority, yellow for medium, green for low)
+  - As a challenge, implement a sorting functionality that displays the tasks ascending or descending order based on priority
+- An additional input field (e.g. user, duration, date due)
+- Ability to edit tasks
+- Something of your choice! The main objective is to add a feature that allows the user's input to affect the DOM
 
-- [MDN - Web Events](https://developer.mozilla.org/en-US/docs/Web/Events)
-- [StackOverflow - Bubbling and Capturing][stackoverflow]
-- [QuirksMode - Event order][quirks]
-
-[stackoverflow]: http://stackoverflow.com/questions/4616694/what-is-event-bubbling-and-capturing
-[quirks]: http://www.quirksmode.org/js/events_order.html
-
-<p class='util--hide'>View <a href='https://learn.co/lessons/fewpjs-event-listening'>Interacting with the DOM via JavaScript Event Listeners</a> on Learn.co and start learning to code for free.</p>
+[example]: https://learn-co-curriculum.github.io/js-task-lister-lite/
+[mdn-pd]: https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault
